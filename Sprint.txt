@@ -1,0 +1,10 @@
+Setup
+User adds an exercise type. Example: Strength training, Cardio, ect..
+User adds an exercise
+User gets list of available exercises
+User logs an exercise
+User gets a list of all logged entries for an exercise
+User adds a workout. (group of exercises)
+User gets a list of all available workouts
+User Logs a workout
+User gets a list of all logged workouts
