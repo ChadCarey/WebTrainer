@@ -1,12 +1,17 @@
 import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy.orm import sessionmaker
 
-dbEngine = sqlalchemy.create_engine("sqlite:///memory:", echo=True)
-TableBase = declarative_base()
+_dbEngine = sqlalchemy.create_engine("sqlite:///memory:", echo=True)
+_TableBase = declarative_base()
+Database = sessionmaker(bind=_dbEngine)()
 
-class ExerciseType(TableBase):
+
+class ExerciseType(_TableBase):
     __tablename__ = "exercise_types"
     id = Column(Integer, primary_key=True)
-    type_name = Column(String)
+    name = Column(String)
 
+
+_TableBase.metadata.create_all(_dbEngine)
