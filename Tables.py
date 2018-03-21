@@ -3,9 +3,9 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Date
 from sqlalchemy.orm import sessionmaker
 
-_dbEngine = sqlalchemy.create_engine("sqlite:///memory:", echo=True)
+_dbEngine = sqlalchemy.create_engine("sqlite:///database", echo=True)
 _TableBase = declarative_base()
-Database = sessionmaker(bind=_dbEngine)()
+_Database = sessionmaker(bind=_dbEngine)()
 
 
 class ExerciseType(_TableBase):
@@ -13,5 +13,11 @@ class ExerciseType(_TableBase):
     id = Column(Integer, primary_key=True)
     name = Column(String)
 
+    @staticmethod
+    def Post(name):
+        exercise = ExerciseType(name=name)
+        _Database.add(exercise)
+        _Database.commit()
+        return exercise.id
 
 _TableBase.metadata.create_all(_dbEngine)
