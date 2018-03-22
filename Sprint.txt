@@ -1,10 +1,11 @@
-Setup : 2 : Done Mar 19
-User adds an exercise type. Example: Strength training, Cardio, ect.. : 3
-User adds an exercise : 3
-User gets list of available exercises : 2
-User logs an exercise : 3
-User gets a list of all logged entries for an exercise : 5
-User adds a workout. (group of exercises): 3
-User gets a list of all available workouts : 2
-User Logs a workout : 3
-User gets a list of all logged workouts : 2
+Story, Points, Done Date
+Setup, 2, Mar 19
+User adds an exercise type. Example: Strength training Cardio ect, 2, Mar 21
+User adds an exercise, 2,
+User gets list of available exercises, 1,
+User logs an exercise, 3,
+User gets a list of all logged entries for an exercise, 5,
+User adds a workout. (group of exercises), 3,
+User gets a list of all available workouts, 1,
+User Logs a workout, 3,
+User gets a list of all logged workouts, 1,
