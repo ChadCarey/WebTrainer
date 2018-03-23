@@ -1,6 +1,7 @@
 Story, Points, Done Date
 Setup, 2, Mar 19
 User adds an exercise type. Example: Strength training Cardio ect, 2, Mar 21
+User gets a list of all exercise types, 1, Mar 21
 User adds an exercise, 2,
 User gets list of available exercises, 1,
 User logs an exercise, 3,

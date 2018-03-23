@@ -38,6 +38,14 @@ class ExerciseType(_TableBase):
             return ExerciseType.NullObject()
 
     @staticmethod
+    def GetAll():
+        try:
+            exercises = _Session.query(ExerciseType).all()
+            return exercises
+        except:
+            return []
+
+    @staticmethod
     def NullObject():
         return ExerciseType()
 

@@ -33,7 +33,24 @@ class TestExerciseTypesTable(unittest.TestCase):
         self.assertIsNotNone(ex.id)
         self.assertEqual(ex.id, ex2.id)
 
+    def test_ExerciseType_Get_method_returns_a_list_of_all_ExerciseTypes(self):
+        # generate a list of workouts to add
+        exerciseNames = ["cardio_"+str(x) for x in xrange(0,10)]
+        for exerciseName in exerciseNames:
+            id = ExerciseType.Post(exerciseName).id
+
+        exerciseList = ExerciseType.GetAll()
+        self.assertGreaterEqual(len(exerciseList), len(exerciseNames))
+
+        # contains at least the exercises we just added
+        addedExerciseNames = [ex.name for ex in exerciseList]
+        print addedExerciseNames
+        for exerciseName in exerciseNames:
+            print exerciseName
+            self.assertTrue(exerciseName in addedExerciseNames)
+
 if __name__ == "__main__":
     unittest.main()
     from Tables import _Database, _dbEngine
+    # cleanup
     _Database.drop(_dbEngine)
