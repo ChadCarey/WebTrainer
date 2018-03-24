@@ -1,8 +1,13 @@
 import unittest
-from Tables import ExerciseType
+import Database
+from Database.ExerciseType import ExerciseType
 
 
 class TestExerciseTypesTable(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(self):
+        Database.Initialize()
 
     def test_ExerciseType_post_method_adds_item_to_database(self):
         ex = ExerciseType.Post(name="Strength")
