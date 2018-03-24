@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 
-_dbEngine = sqlalchemy.create_engine("sqlite:///database", echo=False)
+_dbEngine = sqlalchemy.create_engine("sqlite:///Database/data.sqlite", echo=False)
 TableBase = declarative_base()
 Session = sessionmaker(bind=_dbEngine)()
 
@@ -16,11 +16,15 @@ def GetTableModules():
             tableModules.append('.'.join([filename, filename]))
     return tableModules
 
+def ImportModules(modules):
+    map(__import__, modules)
 
 def Initialize():
     '''
-    imports all of the tables to ensure they are added to TableBase
-    Then runs create_all funtion to create all of the tables
+    imports all of the table modules and initializes the database after they have been added
+    unfortunately tables are added to TableBase.metadata as a side effect when inherited by
+    a table class.
     '''
-    map(__import__, GetTableModules())
+    modules = GetTableModules()
+    ImportModules(modules)
     TableBase.metadata.create_all(_dbEngine)
