@@ -2,12 +2,16 @@ from flask import Flask, request
 app = Flask("TrainerAPI")
 
 
-@app.route("/workout_type", methods=['POST','GET',])
+@app.route("/workout_type", methods=['POST', 'GET', ])
 def addWorkoutType():
     if request.method == 'POST':
-        postWorkoutType()
+        return "Post"
     elif request.method == "GET":
-        return getWorkoutTypes()
+        return "Get"
+
+
+def Serve():
+    app.run()
 
 if __name__ == '__main__':
-    app.run()
+    Run()
