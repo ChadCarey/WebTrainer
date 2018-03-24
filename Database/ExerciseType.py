@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Date
 from Database import TableBase, Session
 
+
 class ExerciseType(TableBase):
     __tablename__ = "exercise_types"
     id = Column(Integer, primary_key=True)

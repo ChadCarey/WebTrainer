@@ -7,6 +7,7 @@ _dbEngine = sqlalchemy.create_engine("sqlite:///Database/data.sqlite", echo=Fals
 TableBase = declarative_base()
 Session = sessionmaker(bind=_dbEngine)()
 
+
 def GetTableModules():
     tableModules = []
     files = os.listdir('.')
@@ -16,14 +17,15 @@ def GetTableModules():
             tableModules.append('.'.join([filename, filename]))
     return tableModules
 
+
 def ImportModules(modules):
     map(__import__, modules)
+
 
 def Initialize():
     '''
     imports all of the table modules and initializes the database after they have been added
-    unfortunately tables are added to TableBase.metadata as a side effect when inherited by
-    a table class.
+    tests are added to TableBase.metadata as a side effect of being inherited.
     '''
     modules = GetTableModules()
     ImportModules(modules)
