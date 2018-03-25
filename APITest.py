@@ -12,7 +12,6 @@ class TestAPI(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        print "Starting Flask server"
         self.serverProcess = Process(target=RunServer, args=[])
         self.serverProcess.start()
         time.sleep(0.1)
@@ -24,7 +23,6 @@ class TestAPI(unittest.TestCase):
 
     @classmethod
     def tearDownClass(self):
-        print "Shutting down Flask server"
         self.serverProcess.terminate()
         self.serverProcess.join()
 
