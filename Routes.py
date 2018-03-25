@@ -1,11 +1,14 @@
 from flask import Flask, request
+from Database.ExerciseType import ExerciseType
 app = Flask("TrainerAPI")
 
 
 @app.route("/workout_type", methods=['POST', 'GET', ])
 def addWorkoutType():
     if request.method == 'POST':
-        return "Post"
+        name = request.form['name']
+        exercise = ExerciseType.Post(name=name)
+        return exercise.json
     elif request.method == "GET":
         return "Get"
 
