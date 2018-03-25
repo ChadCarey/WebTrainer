@@ -4,7 +4,7 @@ import Routes
 import Database
 
 
-def RunServer():
+def RunServer(args=[]):
     Database.Initialize()
     Routes.Serve()
 
