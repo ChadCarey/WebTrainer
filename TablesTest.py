@@ -1,7 +1,7 @@
 import unittest
 import Database
 from Database.ExerciseType import ExerciseType
-
+import json
 
 class TestExerciseTypesTable(unittest.TestCase):
 
@@ -53,6 +53,19 @@ class TestExerciseTypesTable(unittest.TestCase):
         for exerciseName in exerciseNames:
             print exerciseName
             self.assertTrue(exerciseName in addedExerciseNames)
+
+    def test_ExerciseType_json_property_returns_json_str(self):
+        exName = "Plyometrics"
+        ex = ExerciseType.Post(exName)
+        self.assertTrue(type(ex.json) == str)
+
+    def test_ExerciseType_json_contains_an_id_and_correct_name(self):
+        exName = "Plyometrics"
+        ex = ExerciseType.Post(exName)
+        jsonData = json.loads(ex.json)
+        self.assertIsNotNone(jsonData['id'])
+        self.assertTrue(jsonData['name'] == exName.lower())
+
 
 if __name__ == "__main__":
     unittest.main()

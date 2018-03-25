@@ -1,11 +1,15 @@
 from sqlalchemy import Column, Integer, String, Date
 from Database import TableBase, Session
-
+import json
 
 class ExerciseType(TableBase):
     __tablename__ = "exercise_types"
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
+
+    @property
+    def json(self):
+        return json.dumps({'id': self.id, 'name': self.name})
 
     @staticmethod
     def Count(name):
