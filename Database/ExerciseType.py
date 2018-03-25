@@ -9,11 +9,15 @@ class ExerciseType(TableBase):
 
     @property
     def json(self):
-        return json.dumps({
+        return json.dumps(self.dict)
+
+    @property
+    def dict(self):
+        return {
                 'data_type': self.__class__.__name__,
                 'id': self.id,
                 'name': self.name
-            })
+            }
 
     @staticmethod
     def Count(name):

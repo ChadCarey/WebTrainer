@@ -49,9 +49,7 @@ class TestExerciseTypesTable(unittest.TestCase):
 
         # contains at least the exercises we just added
         addedExerciseNames = [ex.name for ex in exerciseList]
-        print addedExerciseNames
         for exerciseName in exerciseNames:
-            print exerciseName
             self.assertTrue(exerciseName in addedExerciseNames)
 
     def test_ExerciseType_json_property_returns_json_str(self):

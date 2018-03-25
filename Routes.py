@@ -1,5 +1,6 @@
 from flask import Flask, request
 from Database.ExerciseType import ExerciseType
+import Utils
 app = Flask("TrainerAPI")
 
 
@@ -10,7 +11,8 @@ def addWorkoutType():
         exercise = ExerciseType.Post(name=name)
         return exercise.json
     elif request.method == "GET":
-        return "Get"
+        ExerciseType
+        return Utils.ToJson(ExerciseType.GetAll())
 
 
 def Serve():
