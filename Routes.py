@@ -11,7 +11,6 @@ def addWorkoutType():
         exercise = ExerciseType.Post(name=name)
         return exercise.json
     elif request.method == "GET":
-        ExerciseType
         return Utils.ToJson(ExerciseType.GetAll())
 
 
