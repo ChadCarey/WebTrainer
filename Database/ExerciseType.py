@@ -54,3 +54,11 @@ class ExerciseType(TableBase):
     @staticmethod
     def NullObject():
         return ExerciseType()
+
+    @staticmethod
+    def DeleteByName(name):
+        item = ExerciseType.GetByName(name)
+        Session.delete(item)
+        result = Session.commit()
+        print result
+        return json.dumps({"data_type": "request_confirmation", "status": "FAILURE"})

@@ -64,6 +64,16 @@ class TestExerciseTypesTable(unittest.TestCase):
         self.assertIsNotNone(jsonData['id'])
         self.assertTrue(jsonData['name'] == exName.lower())
 
+    def test_ExerciseType_DeleteByName_method_deletes_the_item(self):
+        # add one to the database to ensure there is at least one to delete
+        exerciseName = "training"
+        ExerciseType.Post(exerciseName)
+
+        expectedItemCount = len(ExerciseType.GetAll())-1
+        ExerciseType.DeleteByName(exerciseName)
+        itemCount = len(ExerciseType.GetAll())
+
+        self.assertTrue(itemCount, expectedItemCount)
 
 if __name__ == "__main__":
     unittest.main()

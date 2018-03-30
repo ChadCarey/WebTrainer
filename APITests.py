@@ -32,13 +32,23 @@ class TestAPI(unittest.TestCase):
 
     def test_get_ExerciseType_returns_all_ExerciseTypes(self):
         # add the item before we try to get it
-        payload = {'name': 'yoga'}
-        postResult = requests.post(self.WORKOUT_TYPE_URL, data=payload)
-        self.assertTrue(postResult.status_code == SUCCESS_STATUS)
+        postResult = requests.post(self.WORKOUT_TYPE_URL, data={'name': 'yoga1'})
+        postResult = requests.post(self.WORKOUT_TYPE_URL, data={'name': 'yoga2'})
+        postResult = requests.post(self.WORKOUT_TYPE_URL, data={'name': 'yoga3'})
         getResult = requests.get(self.WORKOUT_TYPE_URL)
         self.assertTrue(getResult.status_code == SUCCESS_STATUS)
         jsonData = json.loads(getResult.text)
-        self.assertTrue(False)
+        found = [x['name'] for x in jsonData if 'yoga' in x['name']]
+        self.assertGreaterEqual(len(found), 3)
+
+    def test_delete_ExerciseType_removes_ExerciseType(self):
+        requests.post(self.WORKOUT_TYPE_URL, data={'name': 'yoga1'})
+        allItems = json.loads(requests.get(self.WORKOUT_TYPE_URL).text)
+        startingCount = len(allItems)
+        for item in allItems:
+            requests.delete(self.WORKOUT_TYPE_URL, data={'name': item['name']})
+        allItemsAfterDelete = json.loads(requests.get(self.WORKOUT_TYPE_URL).text)
+        self.assertEqual(0, len(allItemsAfterDelete))
 
     @classmethod
     def tearDownClass(self):
